@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration.Json;
 
 namespace River.Data.Models.Repository
 {
-    public class RiverContext
+    public class RiverContext : DbContext
     {
         public RiverContext() 
         { 
@@ -19,9 +19,9 @@ namespace River.Data.Models.Repository
 
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            if(!optionsBuilder.IsConfigured)
+            if(!optionBuilder.IsConfigured)
             {
                 IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -29,8 +29,8 @@ namespace River.Data.Models.Repository
                 .Build();
                 var connectionString = configuration
                     .GetConnectionString("RiverContext");
-                optionsBuilder.UseSQLServer(connectionString);
-                base.onConfiguring(optionBuilder);
+                optionBuilder.UseSqlServer(connectionString);
+                base.OnConfiguring(optionBuilder);
             }
         }
     }
