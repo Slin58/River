@@ -13,13 +13,23 @@ namespace River.Data.DAO
     {
         public IList<User> GetUsers(RiverContext context)
         {
+            
             return context.Users.ToList();
         }
-        public User GetUser(int id, RiverContext context)
+        public User GetUser(string id, RiverContext context)//Get profile
         {
             return context.Users.Find(id);
         }
 
+        public void Edit(User user, RiverContext context)//Edit profile
+        {
+            User u =context.Users.Find(user);
+            context.Entry(u).CurrentValues.SetValues(u);
+        }
+        public void AddUser(User user, RiverContext context)
+        {
+            context.Users.Add(user);
+        }
 
     }
 }

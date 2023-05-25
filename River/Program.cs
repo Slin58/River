@@ -61,7 +61,7 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "users",
-    pattern: "{controller=User}/{action=GetUser}/{id?}");
+    pattern: "{controller=User}/{action=GetUsers}/{id?}");
 app.MapControllerRoute(
     name: "admin",
     pattern: "{controller=Admin}/{action=AddRole}/{id?}");

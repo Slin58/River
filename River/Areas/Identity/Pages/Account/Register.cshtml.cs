@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using River.Data.Models.Domain;
+using River.Services.Service;
 
 namespace River.Areas.Identity.Pages.Account
 {
@@ -52,6 +54,7 @@ namespace River.Areas.Identity.Pages.Account
         [BindProperty]
         public InputModel Input { get; set; }
 
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -74,6 +77,9 @@ namespace River.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+
+            [Required]
+            public string Name { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -118,11 +124,21 @@ namespace River.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                //todo RedirectToAction(getUser(id))
+
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "USER");
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
+
+                    User user1 = new User();
+                    user1.Email = Input.Email; user1.Name = Input.Name; user1.Id = userId;
+                    user1.Adress = ""; user1.Telefon = ""; user1.Applications = new List<Application>();
+                    UserService userService = new UserService();
+                    userService.AddUser(user1);
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
