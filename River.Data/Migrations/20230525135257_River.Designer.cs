@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using River.Data.Models.Repository;
 
@@ -11,9 +12,10 @@ using River.Data.Models.Repository;
 namespace River.Data.Migrations
 {
     [DbContext(typeof(RiverContext))]
-    partial class RiverContextModelSnapshot : ModelSnapshot
+    [Migration("20230525135257_River")]
+    partial class River
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

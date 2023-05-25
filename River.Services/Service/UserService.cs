@@ -23,12 +23,27 @@ namespace River.Services.Service
         public IList<User> GetUsers()
         {
             using (RiverContext context = new RiverContext())
-            return userDAO.GetUsers(context);
+            {
+                return userDAO.GetUsers(context);
+            }
         }
-        public User GetUser(int id)
+            
+        public User GetUser(string id)
         {
             using (RiverContext context = new RiverContext())
-            return userDAO.GetUser(id, context);
+            {
+                return userDAO.GetUser(id, context);
+            }    
+           
+        }
+
+        public void Edit(User user)
+        {
+            using (RiverContext context=new RiverContext())
+            {
+                userDAO.Edit(user, context);
+                context.SaveChanges();
+            }
         }
 
 

@@ -11,6 +11,8 @@ namespace River.Data.IDAO
     public interface IUserDAO
     {
         IList<User> GetUsers(RiverContext context);
-        User GetUser(int id, RiverContext context);
+        User GetUser(string id, RiverContext context);
+
+        void Edit(User user, RiverContext context);
     }
 }
