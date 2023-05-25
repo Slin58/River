@@ -16,7 +16,6 @@ namespace River.Controllers
         {
             return View(userService.GetUsers());
         }
-
         public ActionResult GetUser(int id)
         {
             return View(userService.GetUser(id));

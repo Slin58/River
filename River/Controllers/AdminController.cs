@@ -32,6 +32,7 @@ namespace River.Controllers
             return View(context.Roles.ToList());
         }
 
+        //[Authorize(Roles = "admin")]
         public ActionResult AddRole()
         {
             return View();
