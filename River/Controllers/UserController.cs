@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using River.Data.Models.Domain;
 using River.Services.IService;
 using River.Services.Service;
 
@@ -17,7 +18,7 @@ namespace River.Controllers
             return View(userService.GetUsers());
         }
 
-        public ActionResult GetUser(int id)
+        public ActionResult GetUser(string id)
         {
             return View(userService.GetUser(id));
         }
@@ -29,7 +30,7 @@ namespace River.Controllers
         }
 
         // GET: UserController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View();
         }
@@ -56,7 +57,7 @@ namespace River.Controllers
         }
 
         // GET: UserController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View();
         }
@@ -64,7 +65,7 @@ namespace River.Controllers
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, IFormCollection collection)
         {
             try
             {
@@ -77,7 +78,7 @@ namespace River.Controllers
         }
 
         // GET: UserController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             return View();
         }
@@ -85,7 +86,7 @@ namespace River.Controllers
         // POST: UserController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, IFormCollection collection)
         {
             try
             {
