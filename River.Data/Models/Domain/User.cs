@@ -17,6 +17,8 @@ namespace River.Data.Models.Domain
 
 
         //editProfile
+        //showDetails
+
         //getApplications
         //addApplication
         //editApplication

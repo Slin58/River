@@ -12,5 +12,10 @@ namespace River.Data.Models.Domain
         public string Name { get; set; }
         public string Website { get; set; }
         public List<Course> Courses { get; set; }
+    
+        //addUniversity
+        //editUniveristy
+        //showCourses
+        //seeApplicationsToCourse
     }
 }
