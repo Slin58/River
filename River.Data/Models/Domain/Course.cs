@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace River.Data.Models.Domain
 {
-    internal class Course
+    public class Course
     {
+        public int Id { get; set; }
+        //todo to be determined
+
+
+        //seeDetails
+        //editCourse
     }
 }
