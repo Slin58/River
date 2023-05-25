@@ -55,6 +55,12 @@ app.UseAuthorization();
 app.UseSession();
 //#####################
 
+//app.MapControllerRoute(
+//    name: "admin",
+//    pattern: "{controller=Admin}/{action=ManageUserRoles}/{id?}");
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "{controller=Admin}/{action=AddRole}/{id?}");
 app.MapControllerRoute(
     name: "admin",
     pattern: "{controller=Admin}/{action=GetUsers}/{id?}");

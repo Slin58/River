@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using River.Data;
 using River.Services.Service;
 
@@ -32,22 +33,42 @@ namespace River.Controllers
 
         public ActionResult AddRole()
         {
-
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddRole(IFormCollection collection)
         {
-            return View();
-        }
-        public ActionResult ManageUserRoles () {
-            return View();
+            IdentityRole role = new IdentityRole();
+            role.Name = collection["RoleName"].ToString();
+            role.NormalizedName = collection["RoleName"]
+                .ToString().ToUpper();
+            context.Roles.Add(role);
+            context.SaveChanges();
+            return RedirectToAction("GetRoles");
         }
 
+        public ActionResult AddUserToRole()
+        {
+            FillInDropDowns();
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ManageUserRoles(string userName, string roleName)
+        public async Task<ActionResult> AddUserToRole(string userName, string roleName)
+        {
+            IdentityUser user = _signInManager.UserManager.FindByNameAsync(userName).Result;
+            await _signInManager.UserManager.AddToRoleAsync(user, roleName);
+            FillInDropDowns();
+            return RedirectToAction("AddUserToRole");
+        }
+        public ActionResult RemoveUserFromRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RemoveUserFromRole(string userName, string roleName)
         {
             return View();
         }
@@ -62,7 +83,27 @@ namespace River.Controllers
         }
         void FillInDropDowns()
         {
-
+            //Prepare DropDown for Users
+            var userList = context.Users.OrderBy(
+                u => u.UserName).ToList().Select(
+                    uu => new SelectListItem
+                    {
+                        Value = uu.UserName.ToString(),
+                        Text = uu.UserName
+                    }
+                ).ToList();
+            ViewData["Users"] = userList;
+            //Prepare DropDown for Roles
+            var roleList = context.Roles.OrderBy(
+                r => r.Name).ToList().Select
+                (
+                    rr => new SelectListItem
+                    {
+                        Value = rr.Name.ToString(),
+                        Text = rr.Name
+                    }
+                ).ToList();
+            ViewData["Roles"] = roleList;
         }
 
 
