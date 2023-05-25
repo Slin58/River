@@ -1,0 +1,59 @@
+﻿@model River.Data.Models.Domain.User
+
+@{
+    ViewData["Title"] = "GetCurrentUser";
+}
+
+<h1>Profile</h1>
+
+@if (User.Identity.IsAuthenticated) {
+    <div>
+        <h4>User</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            @Html.
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Adress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Adress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Telefon)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    </div>
+}
+else
+{
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-20">
+                Register or Login to see your Data
+            </dt>
+            
+        </dl>
+    </div>
+}
+
+

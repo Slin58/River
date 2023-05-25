@@ -18,15 +18,7 @@ namespace River.Data.Models.Domain
         public string Email { get; set; }
         [AllowNull]
         public List<Application> Applications { get; set; }
-
-
-        //editProfile
-        //showDetails
-
-        //getApplications
-        //addApplication
-        //editApplication
-        //deleteApplication
+        public List<University> Universities { get; set; }
 
     }
 }

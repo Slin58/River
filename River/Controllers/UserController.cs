@@ -17,9 +17,18 @@ namespace River.Controllers
         {
             return View(userService.GetUsers());
         }
+        public ActionResult GetCurrentUser()
+        {
+            string id = HttpContext.Session.GetString("userId");
+            return View(userService.GetUser(id));
+        }
         public ActionResult GetUser(string id)
         {
             return View(userService.GetUser(id));
+        }
+        public ActionResult GetApplications(string userId)
+        {
+            return View(userService.GetApplications(userId));
         }
 
         // GET: UserController
@@ -74,7 +83,6 @@ namespace River.Controllers
             }
             catch
             {
-                throw new Exception("Scheiße"); //todo
                 return View();
             }
         }

@@ -1,0 +1,58 @@
+﻿@model River.Data.Models.Domain.Application
+
+@{
+    ViewData["Title"] = "GetApplication";
+}
+
+<h1>GetApplication</h1>
+
+<div>
+    <h4>Application</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Statement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Statement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeacherContact)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TeacherContact)
+        </dd>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TeacherReference)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TeacherReference)
+        </dd>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Offer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Offer)
+        </dd>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Firm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Firm)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="GetApplications" asp-controller="User">Back to List</a>
+
+</div>

@@ -12,7 +12,6 @@ namespace River.Data.Models.Domain
         
         public int UniversityID { get; set; }
         public string Name { get; set; }
-        public string Website { get; set; }
         public virtual ICollection<Application> Applications { get; set; }
     }
 }

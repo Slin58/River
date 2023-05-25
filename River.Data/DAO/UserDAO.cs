@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace River.Data.DAO
 {
@@ -31,5 +32,13 @@ namespace River.Data.DAO
             context.Users.Add(user);
         }
 
+        public List<Models.Domain.Application> GetApplications (User user, RiverContext context)
+        {
+            return user.Applications.ToList();
+        }
+        public void AddToCollection(Models.Domain.Application application, User user, RiverContext context)
+        {
+            user.Applications.Add(application);
+        }
     }
 }

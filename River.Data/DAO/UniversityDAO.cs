@@ -40,16 +40,20 @@ namespace River.Data.DAO
 
             }
         }
-
-        
-        
-
-        
-        
+        public void AddToCollection(Models.Domain.Application application, University university, RiverContext context)
+        {
+            university.Applications.Add(application);
+        }
 
 
-        
-        
+
+
+
+
+
+
+
+
 
 
     }

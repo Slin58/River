@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using River.Data.Models.Domain;
 using River.Data.Models.Repository;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace River.Data.IDAO
 {
@@ -15,5 +16,7 @@ namespace River.Data.IDAO
 
         void Edit(User user, RiverContext context);
         void AddUser(User user, RiverContext context);
+        public List<Models.Domain.Application> GetApplications(User user, RiverContext context);
+        void AddToCollection(Models.Domain.Application application, User user, RiverContext context);
     }
 }

@@ -15,5 +15,6 @@ namespace River.Services.IService
 
         void Edit(User user);
         void AddUser(User user);
+        List<Application> GetApplications(string userId);
      }
 }

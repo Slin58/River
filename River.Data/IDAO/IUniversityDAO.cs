@@ -14,5 +14,7 @@ namespace River.Data.IDAO
         University GetUniversity(int id, RiverContext context);
 
         void AddUniversity(University university, int universityId, string name, ICollection<Application> applications);
+        void AddToCollection(Models.Domain.Application application, University university, RiverContext context);
+
     }
 }
