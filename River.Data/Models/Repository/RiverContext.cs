@@ -18,6 +18,7 @@ namespace River.Data.Models.Repository
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<University> University { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {

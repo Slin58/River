@@ -14,6 +14,8 @@ namespace River.Data.Models.Domain
         public string Adress { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
+        public List<Application> Applications { get; set; }
+
 
     }
 }
