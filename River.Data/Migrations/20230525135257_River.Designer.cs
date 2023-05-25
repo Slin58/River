@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using River.Data.Models.Repository;
 
@@ -11,13 +12,14 @@ using River.Data.Models.Repository;
 namespace River.Data.Migrations
 {
     [DbContext(typeof(RiverContext))]
-    partial class RiverContextModelSnapshot : ModelSnapshot
+    [Migration("20230525135257_River")]
+    partial class River
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -53,7 +55,25 @@ namespace River.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Application");
+                });
+
+            modelBuilder.Entity("River.Data.Models.Domain.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("UniversityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UniversityId");
+
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("River.Data.Models.Domain.University", b =>
@@ -101,6 +121,30 @@ namespace River.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("River.Data.Models.Domain.Application", b =>
+                {
+                    b.HasOne("River.Data.Models.Domain.User", null)
+                        .WithMany("Applications")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("River.Data.Models.Domain.Course", b =>
+                {
+                    b.HasOne("River.Data.Models.Domain.University", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("UniversityId");
+                });
+
+            modelBuilder.Entity("River.Data.Models.Domain.University", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("River.Data.Models.Domain.User", b =>
+                {
+                    b.Navigation("Applications");
                 });
 #pragma warning restore 612, 618
         }
