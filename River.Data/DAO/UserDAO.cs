@@ -21,6 +21,15 @@ namespace River.Data.DAO
             return context.Users.Find(id);
         }
 
+        public void Edit(User user, RiverContext context)
+        {
+            User u =context.Users.Find(user.Id);
+            context.Entry(u).CurrentValues.SetValues(u);
+        }
+        public void AddUser(User user, RiverContext context)
+        {
+            context.Users.Add(user);
+        }
 
     }
 }

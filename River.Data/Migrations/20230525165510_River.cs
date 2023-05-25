@@ -9,17 +9,17 @@ namespace River.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "University",
+                name: "Universities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    UniversityID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_University", x => x.Id);
+                    table.PrimaryKey("PK_Universities", x => x.UniversityID);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,25 +38,7 @@ namespace River.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Courses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UniversityId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Courses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Courses_University_UniversityId",
-                        column: x => x.UniversityId,
-                        principalTable: "University",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Application",
+                name: "Applications",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -70,38 +52,41 @@ namespace River.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Application", x => x.Id);
+                    table.PrimaryKey("PK_Applications", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Application_Users_UserId",
+                        name: "FK_Applications_Universities_UniversityId",
+                        column: x => x.UniversityId,
+                        principalTable: "Universities",
+                        principalColumn: "UniversityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Applications_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Application_UserId",
-                table: "Application",
-                column: "UserId");
+                name: "IX_Applications_UniversityId",
+                table: "Applications",
+                column: "UniversityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_UniversityId",
-                table: "Courses",
-                column: "UniversityId");
+                name: "IX_Applications_UserId",
+                table: "Applications",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Application");
+                name: "Applications");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "Universities");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "University");
         }
     }
 }
