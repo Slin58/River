@@ -23,7 +23,7 @@ namespace River.Controllers
         {
             return View(context.Users.ToList());
         }
-        public ActionResult GetUser(int id)
+        public ActionResult GetUser(string id)
         {
             return View(userService.GetUser(id));
         }
