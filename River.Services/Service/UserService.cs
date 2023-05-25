@@ -8,6 +8,8 @@ using River.Data.Models.Domain;
 using River.Data.Models.Repository;
 using River.Data.IDAO;
 using River.Data.DAO;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace River.Services.Service
 {
@@ -41,7 +43,13 @@ namespace River.Services.Service
         {
             using (RiverContext context=new RiverContext())
             {
-                userDAO.Edit(user, context);
+
+                User existingUser = context.Users.Find(user.Id);
+                existingUser.Name = user.Name;
+                existingUser.Adress = user.Adress;
+                existingUser.Telefon = user.Telefon;
+
+                userDAO.Edit(existingUser, context);
                 context.SaveChanges();
             }
         }

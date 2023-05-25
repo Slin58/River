@@ -58,20 +58,23 @@ namespace River.Controllers
         // GET: UserController/Edit/5
         public ActionResult Edit(string id)
         {
-            return View();
+            User user = userService.GetUser(id);
+            return View(user);
         }
 
         // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, IFormCollection collection)
+        public ActionResult Edit(User user, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                userService.Edit(user);
+                return RedirectToAction("GetUser", "User", new { id = user.Id });
             }
             catch
             {
+                throw new Exception("Scheiße"); //todo
                 return View();
             }
         }
