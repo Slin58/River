@@ -48,6 +48,7 @@ namespace River.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    UniversityName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     Statement = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeacherContact = table.Column<string>(type: "nvarchar(max)", nullable: false),

@@ -27,10 +27,10 @@ namespace River.Services.Service
             using (RiverContext context = new RiverContext())
                 return universityDAO.GetUniversities(context);
         }
-        public University GetUniversity(int id)
+        public University GetUniversity(string name)
         {
             using (RiverContext context = new RiverContext())
-                return universityDAO.GetUniversity(id, context);
+                return universityDAO.GetUniversity(name, context);
         }
 
 

@@ -11,10 +11,10 @@ namespace River.Data.IDAO
     public interface IUniversityDAO
     {
         IList<University> GetUniversities(RiverContext context);
-        University GetUniversity(int id, RiverContext context);
+        University GetUniversity(string name, RiverContext context);
 
         void AddUniversity(University university, int universityId, string name, ICollection<Application> applications);
-        void AddToCollection(Models.Domain.Application application, University university, RiverContext context);
+        void AddToCollection(Application application, University university, RiverContext context);
 
     }
 }

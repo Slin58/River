@@ -55,6 +55,10 @@ namespace River.Data.Migrations
                     b.Property<int?>("UniversityID")
                         .HasColumnType("int");
 
+                    b.Property<string>("UniversityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 

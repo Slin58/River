@@ -1,12 +1,13 @@
-﻿using River.Data.IDAO;
+﻿using Microsoft.EntityFrameworkCore;
+using River.Data.IDAO;
 using River.Data.Models.Domain;
 using River.Data.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace River.Data.DAO
 {
@@ -32,13 +33,14 @@ namespace River.Data.DAO
             context.Users.Add(user);
         }
 
-        public List<Models.Domain.Application> GetApplications (User user, RiverContext context)
+        public List<Application> GetApplications (User user, RiverContext context)
         {
-            return user.Applications.ToList();
+            return context.Users.Find(user.Id).Applications.ToList();
         }
-        public void AddToCollection(Models.Domain.Application application, User user, RiverContext context)
+        public void AddToCollection(Application application, User user, RiverContext context)
         {
-            user.Applications.Add(application);
+            context.Users.Include(u => u.Applications).FirstOrDefault(u => u.Id.Equals(user.Id)).Applications.Add(application);
+
         }
     }
 }

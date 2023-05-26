@@ -16,7 +16,8 @@ namespace River.Data.DAO
             context.Applications.Add(application);
         }
         public Application GetApplication(Application application, RiverContext context) {
-            return context.Applications.Find(application);
+            
+            return context.Applications.Find(application.Id);
         }
         public void ChangeApplication(Application application, RiverContext context)
         {

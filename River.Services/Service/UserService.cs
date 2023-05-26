@@ -66,7 +66,6 @@ namespace River.Services.Service
         {
             using (RiverContext context = new RiverContext())
             {
-                Console.WriteLine("Test123:", userId);
                 User user = context.Users.Include(u => u.Applications).FirstOrDefault(u => u.Id.Equals(userId));
                 return userDAO.GetApplications(user, context);
             }

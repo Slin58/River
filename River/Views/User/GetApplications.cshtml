@@ -13,10 +13,26 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.UniversityName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CourseId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Statement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherContact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Offer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firm)
             </th>
             <th></th>
         </tr>
+
     </thead>
     <tbody>
 @if (Model.Any())
@@ -25,7 +41,22 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.UniversityName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Statement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Offer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firm)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -36,5 +67,7 @@
 }
         
 }
+
+
     </tbody>
 </table>

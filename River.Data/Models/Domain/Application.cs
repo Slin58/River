@@ -11,6 +11,7 @@ namespace River.Data.Models.Domain
     public class Application
     {
         public int Id { get; set; } 
+        public string UniversityName { get; set; }
         public int CourseId { get; set; }
         public string Statement { get; set; }
         public string TeacherContact { get; set; }

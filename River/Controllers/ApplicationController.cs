@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using River.Data.Models.Domain;
 using River.Services.Models;
 using River.Services.Service;
+using System;
 
 namespace River.Controllers
 {
@@ -39,23 +40,15 @@ namespace River.Controllers
         // POST: ApplicationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(ApplicationUniversity applicationUniversity, IFormCollection collection)
+        public ActionResult AddApplication(Application application, IFormCollection collection)
         {
-            applicationUniversity = new ApplicationUniversity();
-            Application application = new Application();
-            application.Id = applicationUniversity.Id;
-            application.CourseId = applicationUniversity.CourseId;
-            application.Statement = applicationUniversity.Statement;
-            application.TeacherContact = applicationUniversity.TeacherContact;
-            application.TeacherReference = applicationUniversity.TeacherReference;
-            application.Offer = applicationUniversity.Offer;
-            application.Firm = applicationUniversity.Firm;
+
 
 
             try
             {
-                string userId = HttpContext.Session.GetString("userId");
-                applicationService.AddApplication(application, userId, applicationUniversity.UniversityId);
+                string userId = HttpContext.Session.GetString("UserId");
+                applicationService.AddApplication(application, userId);
                 return RedirectToAction(nameof(Index));
             }
             catch

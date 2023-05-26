@@ -12,7 +12,7 @@ using River.Data.Models.Repository;
 namespace River.Data.Migrations
 {
     [DbContext(typeof(RiverContext))]
-    [Migration("20230525223821_River")]
+    [Migration("20230526085213_River")]
     partial class River
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,10 @@ namespace River.Data.Migrations
 
                     b.Property<int?>("UniversityID")
                         .HasColumnType("int");
+
+                    b.Property<string>("UniversityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");

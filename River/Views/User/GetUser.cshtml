@@ -1,7 +1,7 @@
 ﻿@model River.Data.Models.Domain.User
 
 @{
-    ViewData["Title"] = "GetUser";
+    ViewData["Title"] = "Profile";
 }
 
 <h1>GetUser</h1>
@@ -40,8 +40,5 @@
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-   <dd>
-
-        <a asp-action="GetApplications" asp-controller="User" asp-route-userId="@Model?.Id">ShowApplications</a>
-    </dd>
+    <br/> <a asp-action="GetApplications" asp-controller="User" asp-route-userId="@Model?.Id">ShowApplications</a>
 </div>

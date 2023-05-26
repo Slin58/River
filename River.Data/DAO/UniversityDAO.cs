@@ -21,9 +21,10 @@ namespace River.Data.DAO
 
 
         //getUniversity
-        public University GetUniversity(int id, RiverContext context)
+        public University GetUniversity(string name, RiverContext context)
         {
-            return context.Universities.Find(id);
+
+            return context.Universities.FirstOrDefault(u => u.Name.Equals(name));
         }
 
         //addUniversity
@@ -42,7 +43,7 @@ namespace River.Data.DAO
         }
         public void AddToCollection(Models.Domain.Application application, University university, RiverContext context)
         {
-            university.Applications.Add(application);
+            context.Universities.Include(u => u.Applications).FirstOrDefault(u => u.UniversityID.Equals(university.UniversityID)).Applications.Add(application);
         }
 
 

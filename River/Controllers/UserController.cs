@@ -19,7 +19,8 @@ namespace River.Controllers
         }
         public ActionResult GetCurrentUser()
         {
-            string id = HttpContext.Session.GetString("userId");
+            string id = HttpContext.Session.GetString("UserId");
+            Console.WriteLine(id);
             return View(userService.GetUser(id));
         }
         public ActionResult GetUser(string id)
@@ -78,7 +79,7 @@ namespace River.Controllers
         {
             try
             {
-                userService.Edit(user);
+                HttpContext.Session.GetString("UserId");
                 return RedirectToAction("GetUser", "User", new { id = user.Id });
             }
             catch

@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using River.Services.Service;
+using System.Net.Http;
+using River.Services.Models;
 
 namespace River.Services.Service
 {
@@ -32,16 +35,16 @@ namespace River.Services.Service
             }
 
         }
-        public bool AddApplication (Application application, String userId, int universityId)
+        public bool AddApplication (Application application , String userId)
         {
             try
             {
                 using (RiverContext context = new RiverContext())
                 {
                     applicationDAO.AddApplication(application, context);
-                    User user = userDAO.GetUser(userId.ToString(), context);
+                    User user = userDAO.GetUser(userId, context);
                     userDAO.AddToCollection(application, user, context);
-                    University university = universityDAO.GetUniversity(universityId, context);
+                    University university = universityDAO.GetUniversity(application.UniversityName, context);
                     universityDAO.AddToCollection(application, university, context);
                     context.SaveChanges();
                 }

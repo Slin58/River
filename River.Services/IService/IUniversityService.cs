@@ -10,7 +10,7 @@ namespace River.Services.IService
     public interface IUniversityService
     {
         IList<University> GetUniversities();
-        University GetUniversity(int id);
+        University GetUniversity(string name);
 
         void AddUniversity(University university, int universityId, string name, ICollection<Application> applications);
 
