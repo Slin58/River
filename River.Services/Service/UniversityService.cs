@@ -41,7 +41,10 @@ namespace River.Services.Service
 
 
 
-
+        public void AddToCollection(Application application, University university, RiverContext context)
+        {
+            universityDAO.AddToCollection(application, university, context);
+        }
 
 
     }

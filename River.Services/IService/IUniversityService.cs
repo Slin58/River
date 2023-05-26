@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using River.Data.Models.Domain;
+using River.Data.Models.Repository;
 
 namespace River.Services.IService
 {
@@ -14,6 +15,8 @@ namespace River.Services.IService
 
         void AddUniversity(University university, int universityId, string name, ICollection<Application> applications);
 
-        
+
+        public void AddToCollection(Application application, University university, RiverContext context);
+
     }
 }
