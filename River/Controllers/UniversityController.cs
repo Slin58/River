@@ -1,70 +1,59 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using River.Data.Models.Domain;
+using River.Services.IService;
 using River.Services.Models;
 using River.Services.Service;
-using System;
 
 namespace River.Controllers
 {
-    public class ApplicationController : Controller
+    public class UniversityController : Controller
     {
-        ApplicationService applicationService;
-        public ApplicationController() { 
-            applicationService = new ApplicationService();
-        }
 
-        public ActionResult GetApplication(int id)
+        IUniversityService universityService;
+
+        public UniversityController()
         {
-            return View(applicationService.GetApplication(id));
+            universityService = new UniversityService();
+
         }
 
-        // GET: ApplicationController
+        public ActionResult GetUniversities()
+        {
+            return View(universityService.GetUniversities());
+        }
+
+
+        public ActionResult GetUniversity(int id)
+        {
+            return View(universityService.GetUniversity(id));
+        }
+
+        public ActionResult GetApplications(int id)
+        {
+            Console.WriteLine(id);
+            return View(universityService.GetApplications(id));
+        }
+
+        // GET: UniversityController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: ApplicationController/Details/5
+        // GET: UniversityController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
-        public ActionResult AddApplication()
-        {
 
-            return View();
-            //return View(applicationService.GetApplication(Id));
-        }
-
-        // POST: ApplicationController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddApplication(Application application, IFormCollection collection)
-        {
-
-
-
-            try
-            {
-                string userId = HttpContext.Session.GetString("UserId");
-                applicationService.AddApplication(application, userId);
-                return RedirectToAction("GetApplications", "User", new { userId = userId }); ;
-
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ApplicationController/Create
+        // GET: UniversityController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ApplicationController/Create
+        // POST: UniversityController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -79,13 +68,13 @@ namespace River.Controllers
             }
         }
 
-        // GET: ApplicationController/Edit/5
+        // GET: UniversityController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ApplicationController/Edit/5
+        // POST: UniversityController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -100,13 +89,13 @@ namespace River.Controllers
             }
         }
 
-        // GET: ApplicationController/Delete/5
+        // GET: UniversityController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ApplicationController/Delete/5
+        // POST: UniversityController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

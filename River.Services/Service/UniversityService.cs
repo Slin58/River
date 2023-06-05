@@ -32,11 +32,28 @@ namespace River.Services.Service
             using (RiverContext context = new RiverContext())
                 return universityDAO.GetUniversity(name, context);
         }
+        public University GetUniversity(int id)
+        {
+            using (RiverContext context = new RiverContext())
+                return universityDAO.GetUniversity(id, context);
+        }
 
 
         public void AddUniversity(University university, int universityId, string name, ICollection<Application> applications)
         {
             universityDAO.AddUniversity(university, universityId, name, applications);
+        }
+        public void AddToCollection(Application application, University university, RiverContext context)
+        {
+            universityDAO.AddToCollection(application, university, context);
+        }
+        public List<Application> GetApplications(int id)
+        {
+            using (RiverContext context = new RiverContext())
+            {
+                University university = context.Universities.Include(u => u.Applications).FirstOrDefault(u => u.UniversityID.Equals(id));
+                return universityDAO.GetApplications(university, context);
+            }
         }
 
 

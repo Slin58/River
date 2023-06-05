@@ -79,6 +79,7 @@ namespace River.Controllers
         {
             try
             {
+                userService.Edit(user);
                 HttpContext.Session.GetString("UserId");
                 return RedirectToAction("GetUser", "User", new { id = user.Id });
             }

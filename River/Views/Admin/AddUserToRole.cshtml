@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "AddUserToRole";
+}
+
+<h1>User Roles for @ViewData["UserName"]</h1>
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <p> 
+        User UserName: @Html.DropDownList("UserName",
+            (IEnumerable<SelectListItem>) ViewData["Users"])
+        Role : @Html.DropDownList("RoleName",
+            (IEnumerable<SelectListItem>) ViewData["Roles"])
+
+    </p><input type="submit", value="Save">
+}
+@Html.ActionLink("Check User Roles", "GetRolesForUser")
+<div>
+    <ol>
+        @foreach(string role in Model)
+        {
+            <li>@role</li>
+        }
+    </ol>
+</div>
+

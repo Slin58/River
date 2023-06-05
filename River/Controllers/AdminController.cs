@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using River.Data;
 using River.Services.Service;
+using System.Data;
 
 namespace River.Controllers
 {
@@ -18,7 +19,7 @@ namespace River.Controllers
             _signInManager = signInManager;
             userService = new UserService();
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult GetUsers()
         {
             return View(context.Users.ToList());
@@ -32,7 +33,7 @@ namespace River.Controllers
             return View(context.Roles.ToList());
         }
 
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult AddRole()
         {
             return View();
@@ -49,7 +50,7 @@ namespace River.Controllers
             context.SaveChanges();
             return RedirectToAction("GetRoles");
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult AddUserToRole()
         {
             FillInDropDowns();
@@ -75,7 +76,7 @@ namespace River.Controllers
             return View();
         }
 
-        [Authorize]
+        //[Authorize(Roles = "admin")]
         public ActionResult GetRolesForUser() {
             return View();
         }

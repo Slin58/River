@@ -7,7 +7,7 @@
 <h1>GetApplications</h1>
 
 <p>
-    <a asp-action="AddApplication" asp-controller="Application">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -25,6 +25,9 @@
                 @Html.DisplayNameFor(model => model.TeacherContact)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TeacherReference)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Offer)
             </th>
             <th>
@@ -32,13 +35,9 @@
             </th>
             <th></th>
         </tr>
-
     </thead>
     <tbody>
-@if (Model.Any())
-{
-    @foreach (var item in Model)
-    {
+@foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UniversityName)
@@ -53,6 +52,9 @@
                 @Html.DisplayFor(modelItem => item.TeacherContact)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TeacherReference)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Offer)
             </td>
             <td>
@@ -62,9 +64,6 @@
                 <a asp-action="GetApplication" asp-controller="Application" asp-route-id="@item.Id">Details</a> |
             </td>
         </tr>
-    }
-        
 }
-
     </tbody>
 </table>

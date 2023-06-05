@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace River.Data.DAO
 {
@@ -27,8 +28,18 @@ namespace River.Data.DAO
             return context.Universities.FirstOrDefault(u => u.Name.Equals(name));
         }
 
-        //addUniversity
-        public void AddUniversity(University university, int universityId, string name, ICollection<Application> applications)
+        public University GetUniversity(int id, RiverContext context)
+        {
+            return context.Universities.Find(id);
+
+        }
+        public List<Application> GetApplications(University university, RiverContext context)
+        {
+            return context.Universities.Find(university.UniversityID).Applications.ToList();
+        }
+
+            //addUniversity
+            public void AddUniversity(University university, int universityId, string name, ICollection<Application> applications)
         {
             using(var context = new RiverContext())
             {
